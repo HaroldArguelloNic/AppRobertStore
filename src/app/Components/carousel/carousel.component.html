@@ -1,0 +1,22 @@
+
+<!-- carousel -->
+<div class="carousel">
+    <ng-container>
+        @for(slide of slides; track slide) {
+
+        <img
+        [src]="slide.src"
+        class="slide"
+      />
+        }
+      
+    </ng-container>
+  
+    <!-- controls -->
+    <button class="control prev">
+      <span class="arrow left"></span>
+    </button>
+    <button class="control next">
+      <span class="arrow right"></span>
+    </button>
+  </div>

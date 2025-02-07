@@ -1,5 +1,4 @@
 import { Component, signal } from '@angular/core';
-import { PrimaryButtonComponent } from "../primary-button/primary-button.component";
 import {RouterLink} from '@angular/router';
 
 

@@ -1,17 +1,27 @@
 import {Component, NgModule, OnInit} from '@angular/core';
 import { Product } from '../../core/Model/Product';
 import {CommonModule} from '@angular/common';
-import {ProductService} from '../../core/Services/product.service';
+import {ProductService} from '../../core/Services/product.service'; 
+import { HeaderComponent } from '../header/header.component';
+import { CarouselComponent } from '../carousel/carousel.component';
 
 
 @Component({
   selector: 'app-store',
-  imports: [CommonModule],
+  imports: [CommonModule, HeaderComponent, CarouselComponent ],
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent implements OnInit {
   listStartProduct: Product[] = [];  //
+
+  
+public slides = [
+  { src: "/img/baner1.jpg" },
+  { src: "/img/baner2.jpg" },
+  { src: "/img/baner3.jpg" },
+];
+
 
   constructor(private _productService: ProductService,
 
