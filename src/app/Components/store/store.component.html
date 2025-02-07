@@ -1,0 +1,23 @@
+<div class="container mt-2">
+  <h3 class="text-center">Productos Disponibles</h3>
+  <hr>
+  <div class="row">
+    <div *ngFor="let item of listStartProduct; trackBy: trackByFn" class="col-sm-3" >
+      <div class=" mt-1">
+        <div class="card">
+          <img [src]="item.image_path" alt="{{item.name}}">
+          <div class="card-body">
+            <p class="fw-bold">{{item.name}}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <button type="button" class="btn btn-sm btn-light">
+                <i class="fa fa-shopping-cart"></i> Agregar
+              </button>
+              <small class="fw-bold">Precio C$ {{item.price}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
