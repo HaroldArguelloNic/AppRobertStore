@@ -15,14 +15,26 @@ import { ProductcardComponent } from "../productcard/productcard.component";
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent implements OnInit {
-  listStartProduct: Product[] = [];  //
-  
+  listStartProduct: Product[] = [];
+  paginatedProducts: Product[] = [];
+  currentPage:number = 1;
+  itemsForPage:number=10;
+
+
+public slides = [
+  { src: "/img/baner1.jpg" },
+  { src: "/img/baner2.jpg" },
+  { src: "/img/baner3.jpg" },
+];
+
+
   constructor(private _productService: ProductService,
 
   ) {}
 
    ngOnInit() {
     this.loadProducts();
+
   }
 
   loadProducts() {
@@ -30,6 +42,7 @@ export class StoreComponent implements OnInit {
       next: (data) => {
         if (data.status) {
           this.listStartProduct = data.value;
+          this.updatePageProduct();
         } else {
           console.log('No se encontraron productos');
         }
@@ -42,5 +55,27 @@ export class StoreComponent implements OnInit {
   cartService = inject(CartService)
 
   product = input.required<Product>();
+
+  updatePageProduct() {
+    const startIndex = (this.currentPage - 1) * this.itemsForPage;
+    const endIndex = startIndex + this.itemsForPage;
+    this.paginatedProducts = this.listStartProduct.slice(startIndex, endIndex);
+  }
+
+  changePageProduct(page: number) {
+    if (page >= 1 && page <= this.getTotalPages()) {
+      this.currentPage = page;
+      this.updatePageProduct();
+    }
+  }
+
+  getTotalPages(): number {
+    return Math.max(1, Math.ceil(this.listStartProduct.length / this.itemsForPage)); // Mínimo 1 página
+  }
+
+  getPageNumbers(): number[] {
+    return Array.from({ length: this.getTotalPages() }, (_, i) => i + 1);
+
+  }
 
 }
