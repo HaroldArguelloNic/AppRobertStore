@@ -1,37 +1,27 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import { Component, inject, OnInit, input} from '@angular/core';
+import { ProductService } from '../../core/Services/product.service'; 
 import { Product } from '../../core/Model/Product';
-import {CommonModule} from '@angular/common';
-import {ProductService} from '../../core/Services/product.service'; 
 import { HeaderComponent } from '../header/header.component';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { CartService } from '../../core/Services/cart.service';
+import { ProductcardComponent } from "../productcard/productcard.component";
 
 
 @Component({
   selector: 'app-store',
-  imports: [CommonModule, HeaderComponent, CarouselComponent ],
+  standalone: true,
+  imports: [HeaderComponent, CarouselComponent, ProductcardComponent],
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.scss']
 })
 export class StoreComponent implements OnInit {
   listStartProduct: Product[] = [];  //
-
   
-public slides = [
-  { src: "/img/baner1.jpg" },
-  { src: "/img/baner2.jpg" },
-  { src: "/img/baner3.jpg" },
-];
-
-
   constructor(private _productService: ProductService,
 
   ) {}
 
-  trackByFn(index: number, item: any): number {
-    return item.id;
-  }
-
-  ngOnInit() {
+   ngOnInit() {
     this.loadProducts();
   }
 
@@ -49,5 +39,8 @@ public slides = [
       }
     });
   }
+  cartService = inject(CartService)
+
+  product = input.required<Product>();
 
 }

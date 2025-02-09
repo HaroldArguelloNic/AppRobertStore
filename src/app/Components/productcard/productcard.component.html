@@ -1,0 +1,23 @@
+  <div id="cardprod" class="container">
+    <div class="card border-primary rounded-4 p-6 py-3 bg-white flex flex-col gap-6 relative" >
+        <img [src]="product().image_path" alt="{{product().name}}">
+        <div class="card-body">
+          <p class="fw-bold">{{product().name}}</p>
+          @if(product().stock !=0 ){
+            <span class="stock" style="color: green;">Stock: {{product().stock}}</span>
+          }@else {
+            <span class="stock" style="color: red">Stosk: Agotado</span>
+          }
+          
+          <div class="d-flex justify-content-between align-items-center">
+            <button type="button" class="btn btn-sm btn-light" >
+              <i class="fa fa-shopping-cart"></i> Agregar
+            </button>
+            <span class="fw-bold">Precio C$ {{product().price}}</span>
+            
+          </div>
+        </div>
+      </div>
+
+</div>
+

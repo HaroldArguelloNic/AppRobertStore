@@ -15,9 +15,12 @@
           <a class="nav-link text-white fw-bold" aria-current="page"  routerLink="/store">Productos</a>
         </li>
       </ul>
-      <a class="nav-link text-white" routerLink="/carrito">
-        <i class="fa fa-shopping-cart"  ></i>(<span class="fw-bold">0</span>)
-      </a>
+      <app-primary-button label="cart"  (btnClicked)="showButtonClicked()">
+        <a class="nav-link text-white" routerLink="/carrito">
+          <i class="fa fa-shopping-cart"  ></i>(<span class="fw-bold">{{ cartservice.cart().length }}</span>)
+        </a>
+      </app-primary-button>
+      
     </div>
   </div>
 </nav>

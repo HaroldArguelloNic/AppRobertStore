@@ -11,4 +11,8 @@ export class PrimaryButtonComponent {
 
   btnClicked = output();
 
+  handleButtonCLicked() {
+    console.log('Button Clicked')
+  }
+
 }

@@ -1,50 +1,18 @@
 <app-header></app-header>
-<!-- Componente de la vista de la tienda -->
-<!-- <div class="container mt-2">
-  <div class="container">
-    <app-carousel [slides]="slides"></app-carousel>
- </div>  -->
-<div class="container">
- <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner" data-bs-interval="5000">
-      <div class="carousel-item active">
-        <img [src]="'/img/baner1.jpg'" class="d-block w-100" alt="productos de limpieza 1" [width]="20">
-      </div>
-      <div class="carousel-item active">
-        <img [src]="'/img/baner2.jpg'" class="d-block w-100" alt="productos de limpieza 2">
-      </div>
-      <div class="carousel-item active">
-        <img [src]="'/img/baner3.jpg'" class="d-block w-100" alt="productos de limpieza 3">
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
 
+<app-carousel></app-carousel>
+
+<div class="container">
   <h3 class="text-center">Productos Disponibles</h3>
   <hr>
   <div class="row">
-    <div *ngFor="let item of listStartProduct; trackBy: trackByFn" class="col-sm-3" >
-      <div class=" mt-1">
-        <div class="card border-primary rounded-4" style="background-color: rgb(221, 215, 205); color: blue;">
-          <img [src]="item.image_path" alt="{{item.name}}">
-          <div class="card-body">
-            <p class="fw-bold">{{item.name}}</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <button type="button" class="btn btn-sm btn-light">
-                <i class="fa fa-shopping-cart"></i> Agregar
-              </button>
-              <small class="fw-bold">Precio C$ {{item.price}}</small>
-            </div>
-          </div>
+    <div class="d-flex flex-col p-6 py-3" >
+      <!---- <div *ngFor="let item of listStartProduct; trackBy: trackByFn" class="col-sm-3" >-->
+        @for(product of listStartProduct; track product) {
+          <app-productcard [product]="product" />
+        }
+      
         </div>
-      </div>
-    </div>
   </div>
+  
 </div>
