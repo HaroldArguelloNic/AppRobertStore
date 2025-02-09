@@ -28,8 +28,13 @@
     </li>
 
     <!-- Números de página -->
-    <li *ngFor="let page of getPageNumbers()" class="page-item" [class.active]="currentPage === page">
+   <!----- <li *ngFor="let page of getPageNumbers()" class="page-item" [class.active]="currentPage === page">
       <a class="page-link" href="javascript:void(0)" (click)="changePageProduct(page)">{{ page }}</a>
+    </li> --->
+    <li>
+      @for(page of getPageNumbers(); track page) {
+        <a class="page-link" href="javascript:void(0)" (click)="changePageProduct(page)">{{ page }}</a>
+      }
     </li>
 
     <!-- Botón "Siguiente" -->
