@@ -6,12 +6,11 @@
   <h3 class="text-center">Productos Disponibles</h3>
   <hr>
   <div class="row">
-    <div class="card-container" >
+    <div class="card-container " >
       <!---- <div *ngFor="let item of listStartProduct; trackBy: trackByFn" class="col-sm-3" >-->
         @for(product of listStartProduct; track product) {
           <app-productcard [product]="product" />
         }
-      
         </div>
   </div>
 </div>

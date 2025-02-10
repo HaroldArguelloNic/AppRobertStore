@@ -1,16 +1,20 @@
 import { Component, inject, OnInit, input} from '@angular/core';
-import { ProductService } from '../../core/Services/product.service'; 
+import { ProductService } from '../../core/Services/product.service';
 import { Product } from '../../core/Model/Product';
-import { HeaderComponent } from '../header/header.component';
-import { CarouselComponent } from '../carousel/carousel.component';
 import { CartService } from '../../core/Services/cart.service';
-import { ProductcardComponent } from "../productcard/productcard.component";
+import {CarouselComponent} from '../carousel/carousel.component';
+import {HeaderComponent} from '../header/header.component';
+import {ProductcardComponent} from '../productcard/productcard.component';
 
 
 @Component({
   selector: 'app-store',
   standalone: true,
-  imports: [HeaderComponent, CarouselComponent, ProductcardComponent],
+  imports: [
+    ProductcardComponent,
+    CarouselComponent,
+    HeaderComponent
+  ],
   templateUrl: './store.component.html',
   styleUrls: ['./store.component.scss']
 })
@@ -19,13 +23,6 @@ export class StoreComponent implements OnInit {
   paginatedProducts: Product[] = [];
   currentPage:number = 1;
   itemsForPage:number=10;
-
-
-public slides = [
-  { src: "/img/baner1.jpg" },
-  { src: "/img/baner2.jpg" },
-  { src: "/img/baner3.jpg" },
-];
 
 
   constructor(private _productService: ProductService,
