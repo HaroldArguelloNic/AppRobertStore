@@ -12,7 +12,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <!-- Usando routerLink en lugar de href para navegación -->
-          <a class="nav-link text-white fw-bold" aria-current="page"  routerLink="/store">Productos</a>
+          <a class="nav-link text-white fw-bold" aria-current="page"  routerLink="/">Productos</a>
         </li>
       </ul>
       <app-primary-button label="cart"  (btnClicked)="showButtonClicked()">
@@ -20,7 +20,7 @@
           <i class="fa fa-shopping-cart"  ></i>(<span class="fw-bold">{{ cartservice.cart().length }}</span>)
         </a>
       </app-primary-button>
-      
+
     </div>
   </div>
 </nav>
