@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Slide } from '../../interface/slide';
-import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-carousel',
@@ -10,5 +8,10 @@ import { NgStyle } from '@angular/common';
 })
 export class CarouselComponent {
 
-  
+  public slides = [
+    { src: "/img/baner1.jpg" },
+    { src: "/img/baner2.jpg" },
+    { src: "/img/baner3.jpg" },
+  ];
+
 }

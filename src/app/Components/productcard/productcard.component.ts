@@ -9,7 +9,7 @@ import {PrimaryButtonComponent} from '../primary-button/primary-button.component
     PrimaryButtonComponent
   ],
   templateUrl: './productcard.component.html',
-  styleUrl: './productcard.component.scss'
+  styleUrl: './productcard.component.scss',
 })
 export class ProductcardComponent{
 
