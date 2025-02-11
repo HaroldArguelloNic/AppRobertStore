@@ -5,13 +5,20 @@ import {Product} from '../Model/Product';
   providedIn: 'root'
 })
 export class CartService {
-  
 
-  cart = signal<Product[]>([]);
+  cart=signal<Product[]>([]);
 
   addToCart(product:Product) {
-    this.cart.set([...this.cart(),product])
+
+    this.cart().push(product);
+  }
+
+  removeFromCart(id:number) {
+    this.cart.set(this.cart().filter((p) => p.id !== id));
+
 
   }
+
+
   constructor() { }
 }

@@ -13,14 +13,31 @@
         <li class="nav-item">
           <!-- Usando routerLink en lugar de href para navegación -->
           <a class="nav-link text-white fw-bold" aria-current="page"  routerLink="/store">Productos</a>
+
         </li>
       </ul>
-      <app-primary-button label="cart"  (btnClicked)="showButtonClicked()">
-        <a class="nav-link text-white" routerLink="/carrito">
-          <i class="fa fa-shopping-cart"  ></i>(<span class="fw-bold">{{ cartservice.cart().length }}</span>)
-        </a>
+      <ul class="navbar-nav me-3 mb-2 mb-lg-0">
+        @if(isLogin) {
+        <li class="nav-item">
+
+            @for (menu of listMenu; track menu){
+              <a [routerLink]="menu.url" [attr.href]="menu.nombre">{{ menu.nombre }}</a>
+
+            }
+          } @else {
+          <li class="nav-item">
+            <a routerLink="/login" class="nav-link text-white fw-bold">Login</a>
+          </li>
+            <li class="nav-item">
+            <a routerLink="/register" class="nav-link text-white fw-bold">Registro</a>
+            </li>
+          }
+      </ul>
+      <app-primary-button (btnClicked)="showButtonClicked()" [label]="'Cart (' + cartService.cart().length +')'" routerLink="/carrito">
+       <!--- <a class="nav-link text-white" routerLink="/carrito"></a>
+        <i class="fa fa-shopping-cart"></i> --->
       </app-primary-button>
-      
+
     </div>
   </div>
 </nav>

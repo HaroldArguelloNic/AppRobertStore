@@ -1,1 +1,18 @@
-<h1>!works</h1>
+<app-header></app-header>
+<h1>Shoping Cart</h1>
+<div class="container">
+@for(items of cartService.cart(); track items) {
+  <div class="bg-gradient shadow-sm border-1 rounded-1 p-5 flex-column gap-4 align-items-center">
+    <img [src]="items.image_path" class="w-50 h-50 object-fit-contain" alt="product">
+    <div class="d-flex me-3 nav-item justify-content-around">
+      <span class="text-md-start fw-bold">Nombre: {{ items.name }}</span>
+      <span class="text-sm-start">Precio C$ {{ items.price }}</span>
+      <span class="text-sm-start">Stock {{ items.stock }}</span>
+    </div>
+    <div class="d-flex justify-content-center pt-3">
+      <app-button label="Remover" (btnClicked)="cartService.removeFromCart(items.id)"></app-button>
+    </div>
+  </div>
+
+}
+</div>

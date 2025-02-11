@@ -1,23 +1,43 @@
-import { Component, Inject, Injectable, signal } from '@angular/core';
-import {RouterLink} from '@angular/router';
-import { CartService } from '../../core/Services/cart.service';
+import {Component, inject, OnInit,} from '@angular/core';
+import {RouterLink,} from '@angular/router';
 import { PrimaryButtonComponent } from '../primary-button/primary-button.component';
+import {MenuService} from '../../core/Services/menu.service';
+import {Menu} from '../../core/Model/Menu';
+import {CartService} from '../../core/Services/cart.service';
 
 
 @Component({
-  selector: 'app-header',
-  imports: [ RouterLink, PrimaryButtonComponent],
+  standalone: true,
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  selector: 'app-header',
+  styleUrl: './header.component.scss',
+  imports: [PrimaryButtonComponent, RouterLink, ]
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  cart = signal('Cart');
+  listMenu: Menu[]=[];
+  isLogin: boolean = false;
+  cartService=inject(CartService);
 
-  cartservice = Inject(CartService);
+  constructor(private _menuService: MenuService, ) {}
 
-  showButtonClicked() {
-    console.log("clicked");
+  ngOnInit() {
+    if (this.isLogin) {
+      this.loadMenu();
+    }
+
   }
 
+  loadMenu() {
+    this._menuService.ListaMenu(1).subscribe({
+      next: (data) => {
+        if (data.status) {
+          this.listMenu=data.value;
+        }
+      }
+    })
+  }
+  showButtonClicked(){console.log("clicked");}
+
+  protected readonly CartService = CartService;
 }
