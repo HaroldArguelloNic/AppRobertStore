@@ -5,6 +5,6 @@ export interface Product {
   image_path?:string,
   description:string,
   stock:number,
-  price:string,
+  price:number,
   active:number
 }
