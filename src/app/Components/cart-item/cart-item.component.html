@@ -1,24 +1,35 @@
 <app-header></app-header>
 <h1>Shoping Cart</h1>
-<div class="container">
-@for(items of cartService.cart(); track items) {
-  <div class="bg-gradient shadow-sm border-1 rounded-1 p-5 flex-column gap-4 align-items-center">
-    <img [src]="items.ProductoImage" class="w-50 h-50 object-fit-contain" alt="product">
-    <div class="d-flex me-3 nav-item justify-content-around">
-      <span class="text-md-start fw-bold">Nombre: {{ items.ProductoName }}</span>
-      <span class="text-sm-start">Precio C$ {{ items.ProductoPrice }}</span>
-      <span class="text-sm-start">Cantidad {{ items.ProductoQty }}</span>
-    </div>
-    <div class="d-flex justify-content-center pt-3">
-      <app-button label="Remover" (btnClicked)="cartService.removeFromCart(items.ProductoId)"></app-button>
-      <div class="ms-3">
+<div class="container d-flex row row-cols-auto justify-content-center gap-5 m-auto p-1">
+  <section class="w-50 justify-content-center h-100">
+    @for(items of cartService.cart(); track items) {
+      <div class="bg-gradient shadow-sm border-1 rounded-1 p-5 flex-column gap-4 align-items-center">
+        <img [src]="items.ProductoImage" class="w-50 h-50 object-fit-contain" alt="product">
+        <hr>
+        <div class="d-flex me-3 nav-item justify-content-around p-2">
+          <span class="text-md-start fw-bold">Nombre: {{ items.ProductoName }}</span>
+          <span class="text-sm-start">Precio C$ {{ items.ProductoPrice }}</span>
+          <span class="text-sm-start">Sub Total {{ items.ProductoQty * items.ProductoPrice }}</span>
+        </div>
+        <div class="d-flex justify-content-center pt-3 pb-3 bg-info border-1 rounded-1 shadow">
+          <app-button label="Remover" (btnClicked)="cartService.removeFromCart(items.ProductoId)"></app-button>
+          <div class="ms-3 border border-2 border-dark rounded-1 pe-2 ps-2">
 
-        <button (click)="incrementQty(items.ProductoId)">+</button>
-        {{ items.ProductoQty }}
-        <button (click)="decrementQty( items.ProductoId)">-</button>
+            <button class="btn btn-success" (click)="incrementQty(items.ProductoId)"><i class="bi-arrow-up-circle-fill"></i></button>
+            {{ items.ProductoQty }}
+            <button class="btn btn-danger" (click)="decrementQty( items.ProductoId)"><i class="bi-arrow-down-circle-fill"></i></button>
+          </div>
+        </div>
       </div>
+    }
+  </section>
+  <aside class="col-sm-4 col-md8 bg-gradient bg-light pt-5 pb-5 text-sm-center float-end h-75">
+    <h2 class="text-black w-auto text-dark-emphasis text-lg-center"><i class="bi-cash"></i> Importe</h2>
+    <p class="text-primary fw-bold">Estimado usuario estamos reflejando el importe de los productos seleccionados, estamos para atenderle.</p>
+    <div>
+      <h3 class="text-bg-secondary text-white pt-5 pb-5 rounded-2">Total a pagar C$ {{ cartService.calculateTotal() }}</h3>
     </div>
-  </div>
 
-}
+  </aside>
+
 </div>

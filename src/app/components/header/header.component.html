@@ -33,9 +33,7 @@
             </li>
           }
       </ul>
-      <app-primary-button (btnClicked)="showButtonClicked()" [label]="'Cart (' + cartService.cart().length +')'" routerLink="/carrito">
-       <!--- <a class="nav-link text-white" routerLink="/carrito"></a>
-        <i class="fa fa-shopping-cart"></i> --->
+      <app-primary-button [label]= "'Cart (' + cartService.cart().length + ')'" routerLink="/carrito">
       </app-primary-button>
 
     </div>

@@ -37,7 +37,5 @@ export class HeaderComponent implements OnInit {
       }
     })
   }
-  showButtonClicked(){console.log("clicked");}
 
-  protected readonly CartService = CartService;
 }
