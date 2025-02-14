@@ -15,9 +15,17 @@ export class CartService {
 
   //cart=signal<Product[]>([]);
 cart = signal<CartItem[]>([])
+  //si el producto ya esta que aumente solamente la cantidad y no lo duplique
   total: number = 0;
   addToCart(product:Product, quantity:number ) {
-
+    for (let item of this.cart()) {
+      if (item.ProductoId === product.id) {
+        item.ProductoQty += quantity;
+        this.total = this.calculateTotal();
+        return;
+      }
+    }
+    //Si no esta que lo agregue
     this.cart().push({
       ProductoId:product.id,
       ProductoName: product.name,

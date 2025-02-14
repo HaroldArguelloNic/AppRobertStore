@@ -29,7 +29,7 @@
     <div>
       <h3 class="text-bg-secondary text-white pt-5 pb-5 rounded-2">Total a pagar C$ {{ cartService.calculateTotal() }}</h3>
     </div>
-    <button (click)="confirmarCompra()" [disabled]="!user_id">Confirmar Compra</button>
+    <button class="btn btn-primary" (click)="confirmarCompra()" [disabled]="!user_id">Confirmar Compra</button>
 
   </aside>
 
