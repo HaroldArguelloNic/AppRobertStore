@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {Product} from '../Model/Product';
 import {CartItem} from '../../interface/cart-item';
 import {Venta} from '../Model/venta';
@@ -6,12 +6,14 @@ import {ResponseApi} from '../Model/ApiResponse';
 import {environment} from '../../../environments/Environment';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {ToastService} from './toast.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
   private urlApi:string= environment.endpoint;
+  toastService= inject(ToastService);
 
   //cart=signal<Product[]>([]);
 cart = signal<CartItem[]>([])
@@ -22,6 +24,7 @@ cart = signal<CartItem[]>([])
       if (item.ProductoId === product.id) {
         item.ProductoQty += quantity;
         this.total = this.calculateTotal();
+        this.toastService.mostrarToast("success", "Producto adicionado!");
         return;
       }
     }
@@ -34,6 +37,7 @@ cart = signal<CartItem[]>([])
       ProductoQty: quantity,
     });
     this.total= this.calculateTotal();
+    this.toastService.mostrarToast("success", "Producto adicionado!");
   }
 
   calculateTotal(): number {

@@ -6,6 +6,7 @@ import {Product} from '../../core/Model/Product';
 import {ButtonComponent} from '../button/button.component';
 import {UtilidadService} from '../../core/Services/utilidad.service';
 import {ResponseApi} from '../../core/Model/ApiResponse';
+import {ToastService} from '../../core/Services/toast.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ import {ResponseApi} from '../../core/Model/ApiResponse';
 export class CartItemComponent {
   cartService = inject(CartService);
   utilidadService= inject (UtilidadService);
+  toastService = inject(ToastService);
 
   items= input.required<Product>();
 
@@ -40,7 +42,7 @@ export class CartItemComponent {
     this.cartService.RegistrarVenta(venta).subscribe(
       (response: ResponseApi) => {
         if (response.status) {
-          alert(`Venta registrada exitosamente: ${response.message}`);
+          this.toastService.mostrarToast("success","Orden Registrada Correctamente");
           this.cartService.clearCart(); // Vaciar carrito después de la compra
         } else {
           alert(`Error al registrar la venta: ${response.message}`);
@@ -50,6 +52,11 @@ export class CartItemComponent {
         alert('Error en la solicitud: ' + error.message);
       }
     );
+  }
+
+  cancelarCompra() {
+    this.cartService.clearCart();
+    this.toastService.mostrarToast("warning","Orden Cancelada correctamente");
   }
 
   incrementQty(id: number) {

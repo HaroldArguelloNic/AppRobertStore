@@ -15,7 +15,12 @@ export class ProductcardComponent{
 
 cartService = inject(CartService);
 
+
 product = input.required<Product>();
 cantidad: number = 1;
+
+showAddItem(){
+
+}
 
 }

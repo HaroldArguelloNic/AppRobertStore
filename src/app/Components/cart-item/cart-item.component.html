@@ -1,5 +1,5 @@
 <app-header></app-header>
-<h1>Shoping Cart</h1>
+<h1 class="text-center fw-bold m-bg-2">Shoping Cart</h1>
 <div class="container d-flex row row-cols-auto justify-content-center gap-5 m-auto p-1">
   <section class="w-50 justify-content-center h-100">
     @for(items of cartService.cart(); track items) {
@@ -29,7 +29,8 @@
     <div>
       <h3 class="text-bg-secondary text-white pt-5 pb-5 rounded-2">Total a pagar C$ {{ cartService.calculateTotal() }}</h3>
     </div>
-    <button class="btn btn-primary" (click)="confirmarCompra()" [disabled]="!user_id">Confirmar Compra</button>
+    <button class="btn btn-primary" (click)="confirmarCompra()" [disabled]="!user_id|| cartService.cart().length === 0 ">Confirmar Compra</button>
+    <button class="btn btn-danger m-lg-3" (click)="cancelarCompra()" [disabled]="cartService.cart().length === 0 ">Cancelar Orden </button>
 
   </aside>
 
