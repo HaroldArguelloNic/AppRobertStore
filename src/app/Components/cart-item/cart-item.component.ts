@@ -30,9 +30,13 @@ export class CartItemComponent {
   user_id: number | undefined = this.utilidadService.obtenerSesionUsuario()?.id;
 
 
+
   confirmarCompra() {
     const venta = this.cartService.generateVenta(this.user_id!);
-
+    if (!this.user_id) {
+      alert('Debe iniciar sesión para confirmar la compra.');
+      return;
+    }
     this.cartService.RegistrarVenta(venta).subscribe(
       (response: ResponseApi) => {
         if (response.status) {
