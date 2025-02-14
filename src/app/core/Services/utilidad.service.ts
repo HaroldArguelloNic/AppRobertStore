@@ -26,6 +26,10 @@ export class UtilidadService {
     return null;
   }
 
+  usuarioAutenticado(): boolean {
+    return this.obtenerSesionUsuario() !== null;
+  }
+
   eliminarSesionUsuario(): void {
     sessionStorage.removeItem("usuario");
   }
