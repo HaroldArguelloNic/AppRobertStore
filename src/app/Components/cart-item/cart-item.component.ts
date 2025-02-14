@@ -1,8 +1,9 @@
 import {Component, inject, input,} from '@angular/core';
 import {CartService} from '../../core/Services/cart.service';
 import {HeaderComponent} from '../header/header.component';
-import {ButtonComponent} from '../button/button.component';
+//import {ButtonComponent} from '../button/button.component';
 import {Product} from '../../core/Model/Product';
+import {ButtonComponent} from '../button/button.component';
 
 
 @Component({
@@ -10,7 +11,8 @@ import {Product} from '../../core/Model/Product';
   standalone: true,
   imports: [
     HeaderComponent,
-    ButtonComponent
+    ButtonComponent,
+    //ButtonComponent
   ],
   templateUrl: './cart-item.component.html',
   styleUrl: './cart-item.component.scss'

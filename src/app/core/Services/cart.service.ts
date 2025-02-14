@@ -1,11 +1,17 @@
 import { Injectable, signal } from '@angular/core';
 import {Product} from '../Model/Product';
 import {CartItem} from '../../interface/cart-item';
+import {Venta} from '../Model/venta';
+import {ResponseApi} from '../Model/ApiResponse';
+import {environment} from '../../../environments/Environment';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private urlApi:string= environment.endpoint;
 
   //cart=signal<Product[]>([]);
 cart = signal<CartItem[]>([])
@@ -31,7 +37,11 @@ cart = signal<CartItem[]>([])
 
   }
 
+  RegistrarVenta(request:Venta):Observable<ResponseApi>{
+    return this.http.post<ResponseApi>(`${this.urlApi}orders`,request)
+  }
 
 
-  constructor() { }
+
+  constructor(private http:HttpClient) { }
 }
