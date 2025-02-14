@@ -37,8 +37,41 @@ cart = signal<CartItem[]>([])
 
   }
 
-  RegistrarVenta(request:Venta):Observable<ResponseApi>{
+  RegistrarVenta(request: {
+    status: string;
+    total: number;
+    user_id: number;
+    products: { id: number; quantity: number; price: number; subtotal: number }[]
+  }):Observable<ResponseApi>{
     return this.http.post<ResponseApi>(`${this.urlApi}orders`,request)
+  }
+
+  // Método para generar la venta
+  generateVenta(usuarioId: number): {
+    status: string;
+    total: number;
+    user_id: number;
+    products: { id: number; quantity: number; price: number; subtotal: number }[]
+  } {
+    const productos = this.cart().map(item => ({
+      id: item.ProductoId,
+      quantity: item.ProductoQty,
+      price: item.ProductoPrice,
+      subtotal: item.ProductoQty * item.ProductoPrice,
+    }));
+
+    return {
+      status: "pendiente",
+      total: productos.reduce((sum, p) => sum + p.subtotal, 0),
+      user_id: usuarioId,
+      products: productos,
+    };
+
+  }
+
+  // Método para limpiar el carrito después de registrar la venta
+  clearCart() {
+    this.cart.set([]);
   }
 
 

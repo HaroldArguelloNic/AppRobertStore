@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import {StoreComponent} from './components/store/store.component';
-import {CartItemComponent} from './components/cart-item/cart-item.component';
-import {RegisterComponent} from './components/register/register.component';
-import {LoginComponent} from './components/login/login.component';
+import {StoreComponent} from './Components/store/store.component';
+import {CartItemComponent} from './Components/cart-item/cart-item.component';
+import {RegisterComponent} from './Components/register/register.component';
+import {LoginComponent} from './Components/login/login.component';
 
 export const routes: Routes = [
   {path:"",component:StoreComponent,pathMatch:"full"},
