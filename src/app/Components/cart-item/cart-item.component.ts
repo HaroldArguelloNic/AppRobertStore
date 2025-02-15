@@ -36,7 +36,7 @@ export class CartItemComponent {
 decrementQty(id: number) {
   const targetItem = this.cartService.cart().find((pitem) => pitem.ProductoId === id);
   if (targetItem) {
-    //actualizamos el incremento en la cantidad del producto del id encontrado
+    //actualizamos el decrementa en la cantidad del producto del id encontrado
     targetItem.ProductoQty--;
     //Actualizamos el signal con la nueva cantidad incrementada
     this.cartService.cart.update(
