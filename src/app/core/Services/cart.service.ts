@@ -24,20 +24,20 @@ cart = signal<CartItem[]>([])
       if (item.ProductoId === product.id) {
         item.ProductoQty += quantity;
         this.total = this.calculateTotal();
-        this.toastService.mostrarToast("success", "Producto adicionado!");
+        this.toastService.add("Producto adicionado!", 3000, "success");
         return;
       }
     }
     //Si no esta que lo agregue
     this.cart().push({
-      ProductoId:product.id,
+      ProductoId:product.id as number,
       ProductoName: product.name,
       ProductoImage: product.image_path,
       ProductoPrice: product.price,
       ProductoQty: quantity,
     });
     this.total= this.calculateTotal();
-    this.toastService.mostrarToast("success", "Producto adicionado!");
+    this.toastService.add("Producto adicionado!", 3000, "success");
   }
 
   calculateTotal(): number {

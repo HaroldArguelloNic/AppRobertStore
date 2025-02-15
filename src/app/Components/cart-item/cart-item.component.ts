@@ -1,7 +1,6 @@
 import {Component, inject, input,} from '@angular/core';
 import {CartService} from '../../core/Services/cart.service';
 import {HeaderComponent} from '../header/header.component';
-//import {ButtonComponent} from '../button/button.component';
 import {Product} from '../../core/Model/Product';
 import {ButtonComponent} from '../button/button.component';
 import {UtilidadService} from '../../core/Services/utilidad.service';
@@ -14,8 +13,7 @@ import {ToastService} from '../../core/Services/toast.service';
   standalone: true,
   imports: [
     HeaderComponent,
-    ButtonComponent,
-    //ButtonComponent
+    ButtonComponent
   ],
   templateUrl: './cart-item.component.html',
   styleUrl: './cart-item.component.scss'
@@ -42,7 +40,7 @@ export class CartItemComponent {
     this.cartService.RegistrarVenta(venta).subscribe(
       (response: ResponseApi) => {
         if (response.status) {
-          this.toastService.mostrarToast("success","Orden Registrada Correctamente");
+          this.toastService.add("Orden Registrada Correctamente",3000,"success");
           this.cartService.clearCart(); // Vaciar carrito después de la compra
         } else {
           alert(`Error al registrar la venta: ${response.message}`);
@@ -56,7 +54,7 @@ export class CartItemComponent {
 
   cancelarCompra() {
     this.cartService.clearCart();
-    this.toastService.mostrarToast("warning","Orden Cancelada correctamente");
+    this.toastService.add("Orden Cancelada correctamente", 3000, "warning");
   }
 
   incrementQty(id: number) {
@@ -73,15 +71,13 @@ export class CartItemComponent {
 decrementQty(id: number) {
   const targetItem = this.cartService.cart().find((pitem) => pitem.ProductoId === id);
   if (targetItem) {
-    //actualizamos el incremento en la cantidad del producto del id encontrado
+    //actualizamos el decrementa en la cantidad del producto del id encontrado
     targetItem.ProductoQty--;
     //Actualizamos el signal con la nueva cantidad incrementada
     this.cartService.cart.update(
       (cart) => cart.map((item) => item.ProductoId === id ? targetItem : item));
   }
 }
-
-
   constructor() {
   }
 }

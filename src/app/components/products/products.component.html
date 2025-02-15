@@ -1,0 +1,98 @@
+<app-header></app-header>
+<div class="container">
+  <div class="d-flex justify-content-between pt-3 pb-3">
+    <h2 class="bg-black text-white p-1 rounded-2">Catalogo de Productos </h2>
+    <button class="btn btn-primary rounded-5" data-bs-toggle="modal" data-bs-target="#addProductModal" ><i class="bi-card-list"></i>  Agregar Producto</button>
+
+  </div>
+
+  <div>
+
+      <table class="table table-primary table-striped-columns ">
+          <thead>
+          <tr class="text-center text-primary fw-bold fs-5">
+          <td>Id</td>
+          <td>Nombre</td>
+          <td>Descripción</td>
+          <td>Precio Costo</td>
+          <td>Precio Venta</td>
+          <td>Stock</td>
+          <td>Activo</td>
+          <td>Acciones</td>
+          </tr>
+          </thead>
+
+        <tbody>
+          @for (itemproduct of listaProductos().values(); track itemproduct){
+            <tr class="text-center">
+              <td>{{itemproduct.id}}</td>
+              <td>{{itemproduct.name}}</td>
+              <td>{{itemproduct.description}}</td>
+              <td>{{itemproduct.price}}</td>
+              <td>{{itemproduct.price}}</td>
+              <td>{{itemproduct.stock}}</td>
+              @if(itemproduct.active == 1){
+                <td><i class="bi-check-circle"></i></td>
+              } @else {
+                <td><i class="bi-x-circle"></i></td>
+              }
+
+              <td class="btn-toolbar justify-content-around">
+                <button class="btn btn-secondary">Editar</button>
+                <button class="btn btn-danger">Deshabilitar</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+
+        </table>
+      </div>
+
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width: 40rem">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Agregar Producto</h5>
+        <button type="button" class="btn btn-close btn-danger" data-bs-dismiss="modal">
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formProducto" >
+          <div>
+            <label for="nameProduct" class="form-label">Nombre del Producto </label>
+            <input type="text" id="nameProduct" class="form-control" formControlName="nameProducto"/>
+          </div>
+          <div>
+            <label class="form-label">Descripcion del Producto </label>
+            <input type="text" class="form-control" formControlName="descriptionProducto"/>
+          </div>
+          <div>
+            <label class="form-label">Categoria del Producto </label>
+            <input type="number" class="form-control" formControlName="categoryProducto" placeholder="Seleccione la Categoria del Producto"/>
+          </div>
+          <div>
+            <label class="form-label">Imagen del Producto</label>
+            <input type="file" #imageInput accept="image/*" class="form-control" (change)="onFileChange(imageInput)"  formControlName="imagenProducto"/>
+          </div>
+          <div>
+            <label class="form-label">Precio</label>
+            <input type="number" class="form-control" formControlName="priceProducto"/>
+          </div>
+          <div>
+            <label class="form-label">Stock</label>
+            <input type="number" class="form-control" formControlName="stockProducto"/>
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addProduct()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

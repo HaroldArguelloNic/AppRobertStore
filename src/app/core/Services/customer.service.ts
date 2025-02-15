@@ -3,22 +3,24 @@ import {environment} from '../../../environments/Environment';
 import {HttpClient} from '@angular/common/http';
 import {ResponseApi} from '../Model/ApiResponse';
 import {Observable} from 'rxjs';
-import {Product} from '../Model/Product';
+import {Customer} from '../Model/Customer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class CustomerService {
 
   constructor(private http:HttpClient) { }
 
   private urlApi:string =environment.endpoint;
-  ListaProductos():Observable<ResponseApi>{
-    return this.http.get<ResponseApi>(`${this.urlApi}products`)
+
+  Guardar(request:Customer):Observable<ResponseApi>{
+    return this.http.post<ResponseApi>(`${this.urlApi}customers`,request)
   }
 
-  AgregarProducto(requestProduct:Product):Observable<ResponseApi>{
-    return this.http.post<ResponseApi>(`${this.urlApi}products/store`, requestProduct)
+  obtenerPerfil(email:string):Observable<ResponseApi>{
+    return this.http.get<ResponseApi>(`${this.urlApi}Customers/${email}`)
   }
+
 
 }

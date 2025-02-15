@@ -4,14 +4,13 @@ import {UtilidadService} from '../../core/Services/utilidad.service';
 import {UsuarioService} from '../../core/Services/usuario.service';
 import {Router} from '@angular/router';
 import {Login} from '../../core/Model/login';
-import {NgbProgressbar} from '@ng-bootstrap/ng-bootstrap';
 import {CommonModule} from '@angular/common';
+import {ToastService} from '../../core/Services/toast.service';
 
 @Component({
   selector: 'app-login',
   imports: [
     ReactiveFormsModule,
-    NgbProgressbar,
     CommonModule,
   ],
   templateUrl: './login.component.html',
@@ -24,7 +23,8 @@ export class LoginComponent {
   constructor(private formBuilder: FormBuilder,
               private router: Router,
               private _usuarioService:UsuarioService,
-              private _utilidadService:UtilidadService,) {
+              private _utilidadService:UtilidadService,
+              private _toastService: ToastService,) {
 
     this.formularioLogin = this.formBuilder.group({
       email: ["", Validators.required],
@@ -49,16 +49,19 @@ export class LoginComponent {
           this._utilidadService.guardarSesionUsuario(data.value);
           this.router.navigate(["/"]);
         } else {
-          //this._utilidadService.mostrarAlerta("No se Encontraron Coincidencias");
+          this._toastService.add("Error en el usuario",300,"danger");
         }
       },
       error: (error) => {
 
+        this._toastService.add("Error en el usuario",300,"danger");
+
+
+
         //this._utilidadService.mostrarError( "Error Inesperado!");
-      },
-      complete: () => {
-       this.mostrarCarga = false;
       }
+  //    complete: () => {
+    //   this.mostrarCarga = false;
     });
   }
 
