@@ -9,7 +9,7 @@
             <span class="stock" style="color: red">Stock: Agotado</span>
           }
           <div class="d-flex justify-content-between align-items-center">
-            <app-primary-button [label]="'Agregar'" (btnClicked)="cartService.addToCart(product(), cantidad)">
+            <app-primary-button  [label]="'Agregar'" (btnClicked)="cartService.addToCart(product(), cantidad) ">
               <i class="fa fa-shopping-cart"></i>
             </app-primary-button>
             <span class="fw-bold">Precio C$ {{product().price}}</span>
