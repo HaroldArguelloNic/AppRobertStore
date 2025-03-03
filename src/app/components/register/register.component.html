@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
+<div class="d-flex justify-content-center align-items-center modal-dialog-scrollable">
   <div class="card shadow-lg" style="width: 30rem;">
     <div class="card-body">
       <div class="text-center mb-4">
@@ -7,30 +7,30 @@
       <div class="mb-3 d-flex justify-content-center">
         <img src="/img/tienda.png" alt="Logo" class="img-fluid align-content-lg-center" style="max-width: 100px;">
       </div>
-      <form>
+      <form [formGroup]="formularioRegister" (ngSubmit)="GuardarUsuario()">
         <div class="mb-3">
           <label for="name" class="form-label">Nombre</label>
-          <input type="text" id="name" class="form-control" placeholder="Ingrese su nombre" required>
+          <input type="text" id="name" class="form-control" formControlName="nombre" placeholder="Ingrese su nombre">
         </div>
         <div class="mb-3">
           <label for="lastName" class="form-label">Apellido</label>
-          <input type="text" id="lastName" class="form-control" placeholder="Ingrese su apellido" required>
+          <input type="text" id="lastName" class="form-control" formControlName="apellido"  placeholder="Ingrese su apellido">
         </div>
         <div class="mb-3">
           <label for="address" class="form-label">Dirección</label>
-          <input type="text" id="address" class="form-control" placeholder="Ingrese su dirección" required>
+          <input type="text" id="address" class="form-control" formControlName="direccion" placeholder="Ingrese su dirección" required>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Correo Electrónico</label>
-          <input type="email" id="email" class="form-control" placeholder="Ingrese su email" required>
+          <input type="email" id="email" class="form-control" formControlName="email" placeholder="Ingrese su email" required>
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Contraseña</label>
-          <input type="password" id="password" class="form-control" placeholder="Ingrese su contraseña" required>
+          <input type="password" id="password" class="form-control" formControlName="password" placeholder="Ingrese su contraseña" required>
         </div>
         <div class="mb-3">
           <label for="phone" class="form-label">Teléfono</label>
-          <input type="tel" id="phone" class="form-control" placeholder="Ingrese su teléfono" required>
+          <input type="tel" id="phone" class="form-control" formControlName="phone" placeholder="Ingrese su teléfono" required>
         </div>
         <div class="d-grid">
           <button type="submit" class="btn btn-primary">Registrarse</button>

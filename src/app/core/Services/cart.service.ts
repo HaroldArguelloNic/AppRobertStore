@@ -63,7 +63,7 @@ cart = signal<CartItem[]>([])
     status: string;
     total: number;
     user_id: number;
-    products: { id: number; quantity: number; price: number; subtotal: number }[]
+    products: { id: number | undefined; quantity: number; price: number; subtotal: number }[]
   } {
     const productos = this.cart().map(item => ({
       id: item.ProductoId,

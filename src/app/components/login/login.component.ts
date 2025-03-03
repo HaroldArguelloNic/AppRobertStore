@@ -11,7 +11,6 @@ import {CommonModule} from '@angular/common';
   selector: 'app-login',
   imports: [
     ReactiveFormsModule,
-    NgbProgressbar,
     CommonModule,
   ],
   templateUrl: './login.component.html',
