@@ -1,6 +1,12 @@
-<div *ngIf="toastService.toasts">
-  <div style="max-width: 160px;">
-    {{ toastService.toasts }}
+<div class="toast-container position-fixed top-0 end-0 p-3">
+  <div *ngIf="showToast" class="toast show" role="alert">
+    <div class="toast-header" [ngClass]="toastClass">
+      <strong class="me-auto">{{ toastTitle }}</strong>
+      <button type="button" class="btn-close" (click)="showToast = false"></button>
+    </div>
+    <div class="toast-body">
+      {{ toastMessage }}
+    </div>
   </div>
 
 </div>

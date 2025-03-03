@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-
-
-export const TOAST_STATE = {
-  success: 'success-toast',
-  warning: 'warning-toast',
-  danger: 'danger-toast'
-};
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +19,11 @@ remove(index: number) {
 
 
   constructor() { }
+  private toastSubject = new Subject<{ tipo: string; mensaje: string }>();
+  toast$ = this.toastSubject.asObservable(); // Observable para suscribirse
+
+  mostrarToast(tipo: 'success' | 'error' | 'warning', mensaje: string) {
+    console.log('Toast enviado:', tipo, mensaje); // Verifica en la consola
+    this.toastSubject.next({ tipo, mensaje });
+  }
 }
